@@ -1,10 +1,10 @@
 // ZMK Core
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/ext_power.h>
 
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 #include "includes/base.dtsi"
 #include "includes/settings.dtsi"
 #include "includes/combos_corne.dtsi"
@@ -15,107 +15,58 @@
 #include "includes/settings_pd.dtsi"
 
 / {
-    chosen {
-        zmk,matrix_transform = &five_column_transform;
-    };
+    chosen { zmk,matrix_transform = &five_column_transform; };
 
     keymap {
         compatible = "zmk,keymap";
+
         default {
             display-name = "BASE";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //|    Q     |    W     |    E     |    R     |    T     |   |    Y     |    U     |    I     |    O     |    P     |
-            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|    A     |    S     |    D     |    F     |    G     |   |    H     |    J     |    K     |    L     |    ;/'   |
-            &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L      &semi_apos
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|    Z     |    X     |    C     |    V     |    B     |   |    N     |    M     |    ,     |    .     |    /     |
-           &hml LCTRL Z &hml LGUI X &hml LALT C  &kp V  &kp B          &kp N      &kp M   &hmr RALT COMMA &hmr RGUI DOT &hmr LCTRL FSLH
-        //╰──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────╯
-        //                      |   GUI    |   LSFT   |   ENT    |   |  SPACE   |  RSHFT   |   GUI    |
-                                  &kp LGUI  &kp LSHFT   LWR_RET        RSE_SPC   &kp RSHFT &kp RGUI
-        //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+  &kp Q  &kp W  &kp E     &kp R                      &kp T        &kp Y     &kp U  &kp I            &kp O          &kp P
+  &kp A  &kp S  &kp D     &kp F                      &kp G        &kp H     &kp J  &kp K            &kp L          &semi_apos
+  &kp Z  &kp X  &kp C     &kp V                      &kp B        &kp N     &kp M  &hmr RALT COMMA  &hmr RGUI DOT  &hmr LCTRL FSLH
+                &kp LGUI  &kp LSHFT LWR_RET RSE_SPC  &kp RSHFT    &kp RGUI
             >;
         };
 
         lower {
             display-name = "LOWER";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //|    1     |    2     |    3     |    4     |    5     |   |    6     |    7     |    8     |    9     |    0     |
-            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|   PREV   | VOL DWN  |  VOL UP  |   NEXT   |   PLAY   |   |    UP    |   DOWN   |   LEFT   |  RIGHT   |   DEL    |
-           &kp MPREV  &kp VOLDN  &kp VOLUP  &kp MNEXT  &kp MPLAY      &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT   &kp DEL
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|          |          |WKR RIGHT | WRK LEFT |   MUTE   |   |   UNDO   |   CUT    |   COPY   |   PASTE  |  INSERT  |
-            &trans     &trans    &wrk_left  &wrk_right &kp C_MUTE     &kp K_UNDO &kp K_CUT  &kp K_COPY &kp K_PASTE &kp INS
-        //╰──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────╯
-        //                      |          |          |          |   |          |          |          |
-                                  &trans     &trans     &trans         &trans     &trans     &trans
-        //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+  &kp N1     &kp N2     &kp N3     &kp N4      &kp N5        &kp N6      &kp N7     &kp N8      &kp N9       &kp N0
+  &kp MPREV  &kp VOLDN  &kp VOLUP  &kp MNEXT   &kp MPLAY     &kp LEFT    &kp DOWN   &kp UP      &kp RIGHT    &kp DEL
+  &trans     &trans     &wrk_left  &wrk_right  &kp C_MUTE    &kp K_UNDO  &kp K_CUT  &kp K_COPY  &kp K_PASTE  &kp INS
+                        &trans     &trans      &trans        &trans      &trans     &trans
             >;
         };
 
         raise {
             display-name = "RAISE";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //|    !     |    @     |    #     |    $     |    %     |   |    ^     |    &     |    *     |    (     |     )    |
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR  &kp PRCNT      &kp CARET   &kp AMPS  &kp ASTRK   &kp LPAR   &kp RPAR
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|    _     |    +     |    =     |    |     |    -     |   |   HOME   |   PGDN   |   PGUP   |   END    |   DEL    |
-            &kp UNDER  &kp PLUS   &kp EQUAL  &kp PIPE   &kp MINUS      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp DEL
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|    \     |    <     |    {     |    (     |    [     |   |    ]     |    )     |    }     |    >     |    /     |
-            &kp BSLH    &kp LT    &kp LBRC   &kp LPAR   &kp LBKT       &kp RBKT   &kp RPAR   &kp RBRC    &kp GT    &kp FSLH
-        //╰──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────╯
-        //                      |          |          |          |   |          |          |  PSCRN   |
-                                    &trans     &trans     &trans         &trans     &trans  &kp PSCRN
-        //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+  &kp EXCL   &kp AT    &kp HASH   &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR
+  &kp UNDER  &kp PLUS  &kp EQUAL  &kp PIPE  &kp MINUS    &kp HOME   &kp PG_DN  &kp PG_UP  &kp END   &kp DEL
+  &kp BSLH   &kp LT    &kp LBRC   &kp LPAR  &kp LBKT     &kp RBKT   &kp RPAR   &kp RBRC   &kp GT    &kp FSLH
+                       &trans     &trans    &trans       &trans     &trans     &kp PSCRN
             >;
         };
 
         mouse {
             display-name = "MOUSE";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //|          |          |          |          | WHL UP   |   | WHL UP   |          |          |          |          |
-            &trans     &trans     &trans     &trans     U_WH_L         U_WH_L    &trans     &trans     &trans     &trans
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|          | Ms Left  | MS Down  | MS Up    | MS Right |   | Ms Left  | MS Down  | MS Up    | MS Right |          |
-            &trans     U_MS_L     U_MS_D     U_MS_U     U_MS_R         U_MS_L     U_MS_D     U_MS_U     U_MS_R    &trans
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|          |          |          |          | WHL DWN  |   | WHL DWN  |          |          |          |          |
-            &trans     &trans     &trans     &trans     U_WH_D         U_WH_D     &trans     &trans     &trans     &trans
-        //╰──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────╯
-        //                      | Default  |  L Click |  R Click |   |  L Click |  R Click |          |
-                                &to DEFAULT  &mkp LCLK  &mkp RCLK     &mkp LCLK  &mkp RCLK  &trans
-        //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+  &trans     &trans     &trans     &trans U_WH_L U_WH_L  &trans    &trans  &trans  &trans  &trans U_MS_L U_MS_D U_MS_U U_MS_R U_MS_L U_MS_D U_MS_U U_MS_R  &trans
+  &trans     &trans     &trans     &trans U_WH_D U_WH_D  &trans    &trans  &trans  &trans  &to DEFAULT                                                     &mkp LCLK
+  &mkp RCLK  &mkp LCLK  &mkp RCLK  &trans
             >;
-
         };
 
         adjust {
             display-name = "ADJUST";
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //|    F1    |    F2    |    F3    |    F4    |    F5    |   |    F6    |    F7    |    F8    |    F9    |   F10    |
-            &kp F1     &kp F2     &kp F3     &kp F4     &kp F5         &kp F6     &kp F7     &kp F8     &kp F9     &kp F10
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|          |          |          |          |          |   |          |          |          |          |          |
-            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|  RESET   |  BTCLR   | USB/BT   |   BT 1   |   BT 2   |   |          |          |          |          | RESET    |
-          &sys_reset &bt BT_CLR &out OUT_TOG &bt BT_SEL 0 &bt BT_SEL 1 &trans     &trans     &trans     &trans     &sys_reset
-        //╰──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┴──────────╯
-        //                      |          |          |          |   |          |          |          |
-                                 &bootloader  &trans     &trans        &trans     &trans    &bootloader
-        //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
+  &kp F1      &kp F2      &kp F3        &kp F4        &kp F5          &kp F6  &kp F7  &kp F8       &kp F9  &kp F10
+  &trans      &trans      &trans        &trans        &trans          &trans  &trans  &trans       &trans  &trans
+  &sys_reset  &bt BT_CLR  &out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1    &trans  &trans  &trans       &trans  &sys_reset
+                          &bootloader   &trans        &trans          &trans  &trans  &bootloader
             >;
-
         };
     };
 };
