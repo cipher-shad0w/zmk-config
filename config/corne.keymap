@@ -23,10 +23,10 @@
         default {
             display-name = "BASE";
             bindings = <
-  &kp Q  &kp W  &kp E     &kp R                      &kp T        &kp Y     &kp U  &kp I            &kp O          &kp P
-  &kp A  &kp S  &kp D     &kp F                      &kp G        &kp H     &kp J  &kp K            &kp L          &semi_apos
-  &kp Z  &kp X  &kp C     &kp V                      &kp B        &kp N     &kp M  &hmr RALT COMMA  &hmr RGUI DOT  &hmr LCTRL FSLH
-                &kp LGUI  &kp LSHFT LWR_RET RSE_SPC  &kp RSHFT    &kp RGUI
+  &kp Q  &kp W  &kp E     &kp R                      &kp T        &kp Y     &kp U     &kp I             &kp O          &kp P
+  &kp A  &kp S  &kp D     &kp F                      &kp G        &kp H     &kp J     &kp K             &kp L          &semi_apos
+  &kp Z  &kp X  &kp C     &kp V                      &kp B        &kp N     &kp M     &hmr RALT COMMA   &hmr RGUI DOT  &hmr LCTRL FSLH
+                &kp LGUI  &kp LSHFT LWR_RET RSE_SPC  &kp RSHFT    &kp RGUI  &kp LCTRL &kp BACKSPACE     &kp ENTER
             >;
         };
 
