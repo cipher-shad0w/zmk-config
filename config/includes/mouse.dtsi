@@ -1,1 +1,24 @@
-// Mouse configuration
+{
+    behaviors {
+        mkp: mouse_click {
+            compatible = "zmk,behavior-mouse-key";
+            #binding-cells = <1>;
+            tap-ms = <5>;
+            bindings = <&mkp BTN_LEFT>, <&mkp BTN_MIDDLE>, <&mkp BTN_RIGHT>;
+        };
+
+        mmv: mouse_move {
+            compatible = "zmk,behavior-mouse-move";
+            #binding-cells = <1>;
+            move-x = <10>;
+            move-y = <10>;
+        };
+
+        msc: mouse_scroll {
+            compatible = "zmk,behavior-mouse-scroll";
+            #binding-cells = <1>;
+            scroll-x = <1>;
+            scroll-y = <1>;
+        };
+    };
+};
