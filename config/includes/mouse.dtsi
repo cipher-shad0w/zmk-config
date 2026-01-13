@@ -1,4 +1,4 @@
-{
+/ {
     behaviors {
         mkp: mouse_click {
             compatible = "zmk,behavior-mouse-key";
